@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CUSTOMER HOME</title>
+<link rel="stylesheet" type="text/css" href="/customerhome.css"></link>
+</head>
+<body>
+	<div th:unless="${ispremium}" class="non-premium">
+		<div class="container">
+			<div class="box">
+				<p>
+					<b>Customer Home Page</b>
+				</p>
+				<br>
+				
+				<form action="pay">
+				<button class="large-button"
+						style="background-color: aqua; color: black;">
+						<b>GET PREMIUM</b>
+					</button>	
+				
+				</form>
+				<br>
+	
+				<form class="admin" action="playsongs">
+					<button class="large-button"
+						style="background-color: aqua; color: black;">
+						<b>PLAY SONGS</b>
+					</button>			
+				</form>
+				<br>
+				
+						<form action="logout">
+						<button class="large-button"
+						style="background-color: aqua; color: black;">
+						<b>LOGOUT</b>
+					</button>	
+	</form>
+	<br>
+				
+			</div>
+		</div>
+	</div>
+	
+	<div th:if="${ispremium}" class="premium">
+		<div class="container">
+			<div class="box">
+				<table border="2">
+					<thead class="display">
+						<tr>
+							<th>Name</th>
+							<th>Artist</th>
+							<th>Genre</th>
+							<th>Play</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="songs:${songs}">
+							<td th:text="${songs.name}"></td>
+							<td th:text="${songs.artist}"></td>
+							<td th:text="${songs.genre}"></td>
+							<!-- <td th:utext="${songs.link}"></td> -->
+							<td>
+							    <audio controls>
+									<source th:src="${songs.link}">
+								</audio>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<br>
+	
+</body>
+</html>
